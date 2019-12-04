@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block socketio %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{url_for('static', filename='script.js')}}"></script>
+{% endblock %}
+
+{% block title %} Channel: {{channel_id}} {% endblock %}
+
+{% block header %} Channel: {{channel_id}} {% endblock %}
+
+{% block body %} 
+<ul id="chat">
+</ul>
+
+<form id="messages">
+    <input type="text" id="message" placeholder="type your message" autofocus="" autocomplete="off" autofocus placeholder="Message"/>
+    <input type="submit" value="Submit">
+</form>
+<br>
+
+<form method="POST" action="{{url_for('leave_channel')}}"> 
+    <input type="submit" value="Leave Channel">
+</form>
+    
+
+{% endblock %}
+
+

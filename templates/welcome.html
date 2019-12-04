@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %} Welcome {{session.username}}! {% endblock %}
+
+{% block header %} Welcome {{session.username}}! {% endblock %}
+
+{% block body %}
+<p>Please create a channel or select an active channel.</p>
+
+<b>Create a channel</b>
+<div>
+    <form method="POST" action="{{url_for('create_channel')}}">
+        <div class="input-group form-group">
+            <div class="form-control">
+                <input type="text" name="channel" placeholder="Channel Name" autofocus="">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<br>
+<b>Select an currently active channel</b>
+<br>
+<div>
+    <form method="POST" action="{{url_for('goto_channel')}}">
+            <select name="channel">
+                {% for ch in active_channels %}
+                    <option value="{{ch}}">{{ch}}</option>
+                {% endfor %}
+            </select>
+        <button type="submit" class="btn btn-primary">Go</button>
+    </form>
+</div>
+
+<br>
+<b>Logout</b>
+<br>
+<div>
+    <form method="POST" action="{{url_for('go_logout')}}">
+        <button type="submit" class="btn btn-primary">Logout</button>
+    </form>
+</div>
+
+ 
+{% endblock %}
